@@ -23,8 +23,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '14.x' # You might need to adjust this value to your own version
-    - name: Commit files
+    - name: Echo repo name
       run: |
-        echo ${{ github.event }}
-        echo ${{ github.event.repository }}
+        echo ${{ github.event.repository.name }}
+    - name: Echo repo name again
+      run: |
         echo ${{ github.event.repository.name }}
