@@ -1,0 +1,26 @@
+name: Test update manifest
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+        fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+        token: ${{secrets.PAT}} # use a personal acces token so that other actions can trigger
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14.x' # You might need to adjust this value to your own version
+    - name: Update patch version
+      id: version
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        npm version patch
+        echo "::set-output name=tag_name::$(git describe --abbrev=0)"
+    - name: Output
+      uses: ad-m/github-push-action@v0.6.0
+      run: |
+        echo ${{ steps.version.output.tag_name }}
