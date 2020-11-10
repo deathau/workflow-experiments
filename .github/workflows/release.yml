@@ -36,6 +36,8 @@ jobs:
     # push the commit
     - name: Push changes
       uses: ad-m/github-push-action@v0.6.0
+      with:
+        github_token: ${{ github.token }}
     # Build the plugin
     - name: Build
       id: build
