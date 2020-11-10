@@ -36,8 +36,11 @@ jobs:
     - name: Commit manifest
       run: |
         git add -u
-        git commit --amend -m ${{ steps.version.outputs.tag }}
-        git tag -fa ${{ steps.version.outputs.tag }}
+        echo added
+        git commit --amend --no-edit
+        echo committed
+        git tag -fa ${{ steps.version.outputs.tag }} -F
+        echo tagged
     # push the commit
     - name: Push changes
       uses: ad-m/github-push-action@v0.6.0
