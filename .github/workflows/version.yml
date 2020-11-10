@@ -1,5 +1,10 @@
-name: Update Minor Version
+name: Bump Version
 on: workflow_dispatch
+  inputs:
+    type:
+      description: 'Type of version (`major`, `minor`, `patch`)'
+      required: true
+      default: 'patch'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,12 +18,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '14.x' # You might need to adjust this value to your own version
-    - name: Update Minor version
+    - name: Update patch version
       id: version
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        npm version minor
+        npm version ${{ github.event.inputs.type }}
         echo "::set-output name=tag::$(git describe --abbrev=0)"
     # update the manifest.json with the tag version
     - name: Update manifest version
