@@ -55,9 +55,9 @@ jobs:
     # Package the required files into a zip
     - name: Package
       run: |
-        mkdir ${{ env.PLUGIN_NAME }}
-        cp main.js manifest.json styles.css README.md ${{ env.PLUGIN_NAME }}
-        zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
+        mkdir ${{ github.repository.name }}
+        cp main.js manifest.json styles.css README.md ${{ github.repository.name }}
+        zip -r ${{ github.repository.name }}.zip ${{ github.repository.name }}
     # Create the release on github
     - name: Create Release
       id: create_release
