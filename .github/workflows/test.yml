@@ -19,7 +19,8 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         npm version patch
+        git describe --abbrev=0
         echo "::set-output name=tag_name::$(git describe --abbrev=0)"
     - name: Output
       run: |
-        echo ${{ steps.version.output.tag_name }}
+        echo ${{ steps.version.outputs.tag_name }}
