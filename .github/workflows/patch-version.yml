@@ -14,10 +14,23 @@ jobs:
       with:
         node-version: '14.x' # You might need to adjust this value to your own version
     - name: Update patch version
+      id: version
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         npm version patch
+        echo "::set-output name=tag::$(git describe --abbrev=0)"
+    # update the manifest.json with the tag version
+    - name: Update manifest version
+      uses: jossef/action-set-json-field@v1
+      with:
+        file: manifest.json
+        field: version
+        value: ${{ steps.version.outputs.tag }}
+    - name: Commit manifest
+      run: |
+        git add -u
+        git commit --amend --no-edit
     # push the commit
     - name: Push changes
       uses: ad-m/github-push-action@v0.6.0

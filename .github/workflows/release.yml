@@ -15,29 +15,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '14.x' # You might need to adjust this value to your own version
-    # get the new version number from the tag name
-    - name: Get version
-      id: version
-      uses: dawidd6/action-get-tag@v1
-    # update the manifest.json with the tag version
-    - name: Update manifest version
-      uses: jossef/action-set-json-field@v1
-      with:
-        file: manifest.json
-        field: version
-        value: ${{ steps.version.outputs.tag }}
-    # commit the new manifest (-u because we only want to update)
-    - name: Commit files
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add -u
-        git commit -m "chore: updating manifest for version ${{ steps.version.outputs.tag }}"
-    # push the commit
-    - name: Push changes
-      uses: ad-m/github-push-action@v0.6.0
-      with:
-        github_token: ${{ github.token }}
     # Build the plugin
     - name: Build
       id: build
