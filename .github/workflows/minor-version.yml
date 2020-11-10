@@ -1,4 +1,4 @@
-name: patch version
+name: update minor version
 on: workflow_dispatch
 jobs:
   build:
@@ -13,11 +13,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '14.x' # You might need to adjust this value to your own version
-    - name: Patch version
+    - name: Update Minor version
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        npm version patch
+        npm version minor
     # push the commit
     - name: Push changes
       uses: ad-m/github-push-action@v0.6.0
