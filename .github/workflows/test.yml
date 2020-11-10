@@ -21,6 +21,5 @@ jobs:
         npm version patch
         echo "::set-output name=tag_name::$(git describe --abbrev=0)"
     - name: Output
-      uses: ad-m/github-push-action@v0.6.0
       run: |
         echo ${{ steps.version.output.tag_name }}
