@@ -30,7 +30,7 @@ jobs:
     - name: Commit manifest
       run: |
         git add -u
-        git commit --amend -m ${{ steps.version.outputs.tag }}
+        git commit --amend --no-edit -F
         git tag -fa ${{ steps.version.outputs.tag }}
     # push the commit
     - name: Push changes
