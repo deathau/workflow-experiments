@@ -7,7 +7,7 @@ on:
         required: true
         default: 'patch'
 jobs:
-  build:
+  bump:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -37,7 +37,7 @@ jobs:
       run: |
         git add -u
         git commit --amend --no-edit
-        git tag -fa ${{ steps.version.outputs.tag }} -m "Bumped version to ${{ steps.version.outputs.tag }}"
+        git tag -fa ${{ steps.version.outputs.tag }} -m "${{ steps.version.outputs.tag }}"
     # push the commit
     - name: Push changes
       uses: ad-m/github-push-action@v0.6.0
