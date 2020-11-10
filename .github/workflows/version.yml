@@ -36,11 +36,8 @@ jobs:
     - name: Commit manifest
       run: |
         git add -u
-        echo added
         git commit --amend --no-edit
-        echo committed
-        git tag -fa ${{ steps.version.outputs.tag }} -F
-        echo tagged
+        git tag -fa ${{ steps.version.outputs.tag }} -m "Bumped version to ${{ steps.version.outputs.tag }}"
     # push the commit
     - name: Push changes
       uses: ad-m/github-push-action@v0.6.0
