@@ -1,4 +1,4 @@
-name: update patch version
+name: Update Patch Version
 on: workflow_dispatch
 jobs:
   build:

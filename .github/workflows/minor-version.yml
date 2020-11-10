@@ -1,4 +1,4 @@
-name: update minor version
+name: Update Minor Version
 on: workflow_dispatch
 jobs:
   build:
