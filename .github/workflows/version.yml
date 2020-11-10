@@ -1,10 +1,11 @@
 name: Bump Version
-on: workflow_dispatch
-  inputs:
-    type:
-      description: 'Type of version (`major`, `minor`, `patch`)'
-      required: true
-      default: 'patch'
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        description: 'Type of version (`major`, `minor`, `patch`)'
+        required: true
+        default: 'patch'
 jobs:
   build:
     runs-on: ubuntu-latest
