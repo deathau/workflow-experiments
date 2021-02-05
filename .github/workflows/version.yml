@@ -38,7 +38,7 @@ jobs:
         git config --local user.name "GitHub Action"
         git branch --show-current
         git add -u
-        git commit --no-edit
+        git commit -m "${{ steps.version.outputs.version }}"
         git tag -fa ${{ steps.version.outputs.version }} -m "${{ steps.version.outputs.version }}"
     # push the commit
     - name: Push changes
