@@ -23,8 +23,7 @@ jobs:
       uses: MCKanpolat/auto-semver-action@1.0.5
       id: version
       with:
-        releaseType: ${{ github.event.inputs.type }} 
-        incrementPerCommit: false
+        releaseType: ${{ github.event.inputs.type }}
         github_token: ${{ secrets.PAT }}
     # update the manifest.json with the tag version
     - name: Update manifest version
